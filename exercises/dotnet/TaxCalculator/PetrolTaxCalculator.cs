@@ -8,24 +8,26 @@ namespace TaxCalculator
     {
         public override int CalculateTax(Vehicle vehicle)
         {
-
             int emissions = vehicle.Co2Emissions;
             FuelType fuelType = vehicle.FuelType;
 
+            TimeSpan timeSinceFirstRegistration = DateTime.Now - vehicle.DateOfFirstRegistration;
+            TimeSpan oneYear = new TimeSpan(365, 0, 0, 0, 0);
+
             if (EnableStory4)
             {
-                if (DateTime.Now - vehicle.DateOfFirstRegistration > new TimeSpan(365, 0, 0, 0, 0))
+                if (timeSinceFirstRegistration > oneYear)
                 {
                     switch (fuelType)
                     {
                         case FuelType.Petrol:
                         case FuelType.Diesel:
                             return 140;
+                        case FuelType.AlternativeFuel:
+                            return 130;
                         default:
                         case FuelType.Electric:
                             return 0;
-                        case FuelType.AlternativeFuel:
-                            return 130;
                     }
                 }
             }
