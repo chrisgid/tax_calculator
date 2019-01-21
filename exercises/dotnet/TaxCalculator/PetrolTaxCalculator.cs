@@ -14,7 +14,7 @@ namespace TaxCalculator
 
             if (EnableStory4)
             {
-                if (vehicle.DateOfFirstRegistration.Year != DateTime.Now.Year)
+                if (DateTime.Now - vehicle.DateOfFirstRegistration > new TimeSpan(365, 0, 0, 0, 0))
                 {
                     switch (fuelType)
                     {
