@@ -12,6 +12,24 @@ namespace TaxCalculator
             int emissions = vehicle.Co2Emissions;
             FuelType fuelType = vehicle.FuelType;
 
+            if (EnableStory4)
+            {
+                if (vehicle.DateOfFirstRegistration.Year != DateTime.Now.Year)
+                {
+                    switch (fuelType)
+                    {
+                        case FuelType.Petrol:
+                        case FuelType.Diesel:
+                            return 140;
+                        default:
+                        case FuelType.Electric:
+                            return 0;
+                        case FuelType.AlternativeFuel:
+                            return 130;
+                    }
+                }
+            }
+
             if (fuelType == FuelType.Petrol)
             {
                 if (emissions < 1)
