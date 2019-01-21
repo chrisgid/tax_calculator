@@ -11,7 +11,7 @@ namespace TaxCalculator.Tests
         [SetUp]
         public void BeforeEach()
         {
-            _taxCalculator = new PetrolTaxCalculator();
+            _taxCalculator = new PetrolTaxCalculator(false);
         }
 
         [Test]
